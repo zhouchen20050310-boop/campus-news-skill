@@ -1,0 +1,30 @@
+name: Offline tests
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ['3.11', '3.12']
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Run offline tests
+        run: python -X utf8 -m unittest discover -s skills/campus-news-collect/tests -v
+      - name: Build synthetic demo
+        run: python -X utf8 examples/run_offline_demo.py
+      - name: Package installable skill
+        run: python -X utf8 scripts/package_skill.py

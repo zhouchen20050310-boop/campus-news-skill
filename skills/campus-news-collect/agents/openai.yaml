@@ -1,0 +1,6 @@
+interface:
+  display_name: "校园资讯采编"
+  short_description: "按指定公众号与日期采集资讯，筛选整理、参考模板排版并导入秀米草稿"
+  default_prompt: "使用 $campus-news-collect 制作一期校园资讯，先检查我提供的公众号范围、文章采集日期和资讯有效日期。"
+policy:
+  allow_implicit_invocation: true
