@@ -1,6 +1,6 @@
 # 筛选与稿件数据
 
-Agent 实际阅读后写 JSON。日期及有效日期模式复制本次 plan，文章编号来自阅读索引，不沿用旧一期编号或文案。用户明确选择“不限”时，添加 validity_mode=unrestricted，valid_start/valid_end 都为 null；不能漏传模式或换成虚构日期。不限时可将有价值的新闻报道归为“新闻动态”，不要求它另有未来活动日期，但已截止的参与机会仍不能写成开放。build_news.py 不会自动执行语义筛选或调用模型 API。
+Agent 实际阅读后写 JSON。日期及有效日期模式复制本次 plan，文章编号来自本次阅读索引，文案根据对应原文生成。用户明确选择“不限”时，添加 validity_mode=unrestricted，valid_start/valid_end 都为 null；不能漏传模式或换成虚构日期。不限时可将有价值的新闻报道归为“新闻动态”，不要求它另有未来活动日期，但已截止的参与机会仍不能写成开放。build_news.py 不会自动执行语义筛选或调用模型 API。
 
 ```json
 {

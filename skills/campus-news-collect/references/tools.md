@@ -3,10 +3,10 @@
 ## 运行条件
 
 - Agent 需要读写本地文件、执行 Python 3.11+，并访问用户电脑上的 WeChat MP Tools HTTP 服务。云端 Agent 的 127.0.0.1 不指向用户电脑，不能直接套用本地地址。
-- 用户安装、启动并登录 WeChat MP Tools，收藏需要采集的公众号。本项目验证过 v2.3.1 的 API，默认地址 `http://127.0.0.1:5200`，可用 --tool-url 指定实际地址。
+- 用户安装、启动并登录 WeChat MP Tools，收藏需要采集的公众号。适配器使用 v2.3.1 的 API 约定，默认地址 `http://127.0.0.1:5200`，可用 --tool-url 指定实际地址。
 - 采集与排版脚本使用 Python 标准库。桌面工具需能生成 MD、PDF、HTML、图片；Skill 不修改其源码、下载设置或授权信息，格式缺失时报告并指导用户检查设置。
-- 秀米需要单独准备 [all-to-xiumi](https://github.com/hanselhan23/all-to-xiumi) 项目、Selenium、Edge及驱动。适配器使用已核对的内部函数，升级后须重做转换与浏览器验收，不承诺任意版本兼容。不要把第三方项目、依赖目录或浏览器登录资料复制进 Skill 包。
-- 当前机器已有 tools/all-to-xiumi 与 tools/xiumi-deps，定位后通过参数传入；路径不是对所有用户通用的安装位置。无需读取或导出账号池 Cookie。
+- 秀米需要单独准备 [all-to-xiumi](https://github.com/hanselhan23/all-to-xiumi)、Selenium、Edge及驱动。通过 --project 指定项目目录，--deps 指定可选的 Python 依赖目录；更新工具后检查转换与导入结果。
+- 第三方工具、依赖和浏览器登录资料单独管理。适配器使用下载工具已有的登录状态，无需读取或导出账号池 Cookie。
 
 ## 命令
 

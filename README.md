@@ -5,7 +5,7 @@
 [![Tests](https://github.com/zhouchen20050310-boop/campus-news-skill/actions/workflows/tests.yml/badge.svg)](https://github.com/zhouchen20050310-boop/campus-news-skill/actions/workflows/tests.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-**本人第一次编写Skill** 本地测试了资讯采集、筛选、文案撰写、排版和秀米导入功能，无误，如其它设备使用过程发现bug，欢迎反馈
+欢迎通过 Issue 反馈使用问题和改进建议。
 
 ## 为什么做这个项目
 
@@ -21,11 +21,11 @@
 | --- | --- |
 | 范围检查 | 读取公众号 TXT 开关，与下载工具收藏列表核对；缺失时提醒用户先收藏 |
 | 日期控制 | 文章采集日期与资讯有效日期分开指定；有效日期可明确选择“不限” |
-| 采集归档 | 分页读取、去重、下载，保留 PDF、HTML、MD、图片及状态记录； |
+| 采集归档 | 分页读取、去重、下载，保留 PDF、HTML、MD、图片及状态记录 |
 | 逐篇筛选 | 先读 MD，需要时才补读图片/PDF，根据你的资讯类型要求筛选资讯，并给出每篇去留理由，如读到汇总资讯，则拆分独立事项 |
 | 文案与标题 | 整理时间、对象、亮点、参与或阅读方式、限制、原文链接、标题与概要 |
 | 排版 | 生成普通 HTML与秀米兼容 HTML、文案 MD、编辑核对清单 |
-| 秀米交接 | 本地转换后导入（需要用户先登录），并尝试分步核对 |
+| 秀米交接 | 检查兼容格式，登录秀米后导入草稿，并核对内容和保存结果 |
 
 ```mermaid
 flowchart LR
@@ -43,10 +43,10 @@ flowchart LR
 
 - 支持 Skill 的 Agent，具备本地文件读写、Python 执行及所需浏览器工具。
 - Python **3.11+**。主采集、筛选结果导出和排版脚本使用标准库。
-- 本机启动并登录 [WeChat MP Tools](https://github.com/x554960766/wechat-mp-tools)，收藏目标公众号。适配器基于本项目已测试的 v2.3.1 接口，默认 `http://127.0.0.1:5200`。
+- 启动并登录 [WeChat MP Tools](https://github.com/x554960766/wechat-mp-tools)，收藏目标公众号。适配器使用 v2.3.1 的接口约定，默认地址为 `http://127.0.0.1:5200`。
 - 需要导入秀米时，另行准备 [all-to-xiumi](https://github.com/hanselhan23/all-to-xiumi)、Selenium、Edge及相应驱动。
 
-**仅下载本仓库不会安装以上桌面软件，也不会取得你的公众号或秀米登录状态。** 云端 Agent 的 localhost 不指向你的电脑；WorkBuddy 等其他宿主的实际兼容性尚未验收。
+先完成以上工具的安装与登录，并让 Agent 能访问下载工具的接口。云端运行时需另行连接到工具所在的电脑。
 
 ### 2. 安装 Skill
 
@@ -101,11 +101,11 @@ python examples/run_offline_demo.py
 ## 常用入口
 
 - [首次使用与工具连接](docs/quickstart.md)
-- [协作方式、结构和验证状态](docs/architecture.md)
+- [工作流程与分工](docs/architecture.md)
 - [给 Agent 的完整规则](skills/campus-news-collect/SKILL.md)
 - [公众号 TXT 格式](skills/campus-news-collect/references/source-scope.md)
 - [筛选及稿件数据格式](skills/campus-news-collect/references/editorial-data.md)
-- [秀米操作与验收标准](skills/campus-news-collect/references/xiumi.md)
+- [导入秀米](skills/campus-news-collect/references/xiumi.md)
 
 ## 仓库结构
 
@@ -141,7 +141,7 @@ python scripts/package_skill.py
 
 ## 参考与许可
 
-项目组织参考 [Anthropic Skills](https://github.com/anthropics/skills) 和 [OpenAI Plugins](https://github.com/openai/plugins) 的示例结构；工具集成参考其各自项目的接口与实际测试结果。只借鉴组织方式，不将它们的功能或稳定性作为本项目承诺。
+项目组织参考 [Anthropic Skills](https://github.com/anthropics/skills) 和 [OpenAI Plugins](https://github.com/openai/plugins) 的示例结构；工具接入说明见以下项目。
 
 - 主采集工具：[wechat-mp-tools](https://github.com/x554960766/wechat-mp-tools)
 - 秀米适配工具：[all-to-xiumi](https://github.com/hanselhan23/all-to-xiumi)
